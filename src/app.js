@@ -1,0 +1,53 @@
+// import express from "express";
+// import morgan from "morgan";
+// import dns from "dns";
+// dns.setServers(['1.1.1.1','8.8.8.8'])
+// import authRouter from './routes/auth.routes.js'
+// import cookieParser from "cookie-parser";
+// import cors from "cors";
+
+// const corsOptions = {
+//   origin: 'http://localhost:5174',
+//   credentials: true,
+// }
+
+// const app = express();
+// app.use(cors(corsOptions));
+// app.use(express.json());
+// app.use(morgan("dev"));
+// app.use(cookieParser())
+
+
+// app.use('/api/auth',authRouter)
+
+// export default app;
+
+import express from "express";
+import morgan from "morgan";
+import dns from "dns";
+import cookieParser from "cookie-parser";
+import cors from "cors";
+
+import authRouter from "./routes/auth.routes.js";
+
+// DNS configuration
+dns.setServers(["1.1.1.1", "8.8.8.8"]);
+
+const app = express();
+
+// CORS configuration
+const corsOptions = {
+  origin: "http://localhost:5173",
+  credentials: true,
+};
+
+// Middlewares
+app.use(cors(corsOptions));
+app.use(express.json());
+app.use(morgan("dev"));
+app.use(cookieParser());
+
+// Routes
+app.use("/api/auth", authRouter);
+
+export default app;
