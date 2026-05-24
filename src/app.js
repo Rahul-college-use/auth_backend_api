@@ -31,7 +31,7 @@ import cors from "cors";
 import authRouter from "./routes/auth.routes.js";
 
 // DNS configuration
-dns.setServers(["1.1.1.1", "8.8.8.8"]);
+dns.setServers(["0.0.0.0","1.1.1.1", "8.8.8.8"]);
 
 const app = express();
 
