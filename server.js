@@ -4,7 +4,7 @@ import connectDB from './src/config/database.js';
 const startServer = async () => {
     try {
         await connectDB();
-        const PORT = process.env.PORT || 3000;
+        const PORT = "mongodb+srv://Auth_db:Rahul123@auth.uqawhz8.mongodb.net/main_auth" || process.env.PORT || 3000;
         app.listen(PORT, () => {
             console.log(`✓ Server is running on port: ${PORT}`);
         });
