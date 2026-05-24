@@ -16,11 +16,18 @@ const connectDB = async()=>{
             bufferCommands: false,
         };
         cached.promise = mongoose.connect(config.MONGO_URL, opts).then((mongoose)=>{
+            console.log("Connected to MongoDB");
             return mongoose;
-        }).catch((err)=>{
+        })
+        try{
+            cached.conn = await cached.promise;
+
+        }catch(err){
             cached.promise = null;
+            console.log("Error connecting to MongoDB", err);
             throw err;
-        });
+        }
+        return cached.conn;
     }
 //    await mongoose.connect(config.MONGO_URL)
 //     console.log("Connected to MongoDB")
