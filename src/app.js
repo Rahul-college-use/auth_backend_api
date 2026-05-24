@@ -37,7 +37,7 @@ const app = express();
 
 // CORS configuration
 const corsOptions = {
-  origin: "*" ,
+  origin: "https://auth-frontend-alpha-one.vercel.app" ,
   credentials: true,
 };
 
