@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken'
 import config from "../config/config.js";
 import sessionModel from "../models/session.model.js";
 import { sendEmail } from "../services/email.service.js";
-import { generateOtp , getOtpHtml } from "../utils/utils.js";
+import { generateOtp, getOtpHtml } from "../utils/utils.js";
 import otpModel from "../models/otp.model.js";
 import connectDB from "../config/database.js";
 
@@ -35,7 +35,7 @@ export async function register(req, res) {
 
         // set hashed password
         const hashedPassword = crypto.createHash("sha512").update(password).digest('hex');
-        
+
         // user created in database
         const user = await userModel.create({
             username,
@@ -46,7 +46,7 @@ export async function register(req, res) {
         const otp = generateOtp();
         const html = getOtpHtml(otp);
         const otpHash = crypto.createHash("sha512").update(otp).digest('hex');
-        
+
         await otpModel.create({
             email,
             user: user._id,
@@ -76,6 +76,8 @@ export async function register(req, res) {
 
 export async function get_me(req, res) {
     try {
+        await connectDB();
+
         const token = req.headers.authorization?.split(" ")[1];
         if (!token) {
             return res.status(401).json({
@@ -109,6 +111,8 @@ export async function get_me(req, res) {
 }
 
 export async function refreshToken(req, res) {
+            await connectDB();
+
     const refreshToken = req.cookies.refreshToken;
     if (!refreshToken) {
         res.status(401).json({
@@ -159,6 +163,8 @@ export async function refreshToken(req, res) {
 }
 
 export async function logout(req, res) {
+            await connectDB();
+
     const refreshToken = req.cookies.refreshToken;
     if (!refreshToken) {
         res.status(401).json({
@@ -185,6 +191,8 @@ export async function logout(req, res) {
 }
 
 export async function logoutAll(req, res) {
+            await connectDB();
+
     const refreshToken = req.cookies.refreshToken;
     if (!refreshToken) {
         return res.status(401).json({
@@ -206,6 +214,8 @@ export async function logoutAll(req, res) {
 }
 
 export async function login(req, res) {
+            await connectDB();
+
     try {
         const { email, password } = req.body;
 
@@ -283,6 +293,8 @@ export async function login(req, res) {
 }
 
 export async function verifyEmail(req, res) {
+            await connectDB();
+
     const { email, otp } = req.body;
     const otpHash = crypto.createHash("sha512").update(otp).digest('hex')
     const otpDoc = await otpModel.findOne({ email, otpHash })
