@@ -8,10 +8,10 @@ import { generateOtp , getOtpHtml } from "../utils/utils.js";
 import otpModel from "../models/otp.model.js";
 import connectDB from "../config/database.js";
 
-connectDB();
 
 export async function register(req, res) {
     try {
+        await connectDB();
         const { username, email, password } = req.body;
 
         if (!username || !email || !password) {
