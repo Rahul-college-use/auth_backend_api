@@ -29,7 +29,7 @@ const connectDB = async()=>{
     //     }
     //     return cached.conn;
     // }
-   await mongoose.connect("mongodb+srv://Auth_db:Rahul123@auth.uqawhz8.mongodb.net/main_auth",{
+   await mongoose.connect(config.MONGO_URL,{
         useNewUrlParser: true,
         useUnifiedTopology: true,
    })
