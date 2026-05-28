@@ -7,7 +7,7 @@ The MongoDB connection was timing out because environment variables were not con
 
 ### Step 1: Open Vercel Dashboard
 1. Visit https://vercel.com/dashboard
-2. Select your project: `auth-backend-api-1`
+2. Select your project: `auth-backend-api-2`
 
 ### Step 2: Add Environment Variables
 1. Go to **Settings** → **Environment Variables**
