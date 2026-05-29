@@ -6,9 +6,9 @@ import sessionModel from "../models/session.model.js";
 import { sendEmail } from "../services/email.service.js";
 import { generateOtp, getOtpHtml } from "../utils/utils.js";
 import otpModel from "../models/otp.model.js";
-import connectDB from "../config/database.js";
+// import connectDB from "../config/database.js";
 
-connectDB();
+// connectDB();
 
 export async function register(req, res) {
     try {
@@ -201,7 +201,7 @@ export async function logoutAll(req, res) {
 
     const refreshToken = req.cookies.refreshToken;
     if (!refreshToken) {
-        return res.status(401).json({
+        res.status(401).json({
             message: "Refresh Token not found"
         })
     }

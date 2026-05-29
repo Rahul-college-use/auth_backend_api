@@ -27,12 +27,8 @@ import morgan from "morgan";
 import dns from "dns";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-
 import authRouter from "./routes/auth.routes.js";
-import connectDB from "./config/database.js";
-import config from "./config/config.js";
-config;
-connectDB();
+
 
 
 // DNS configuration
