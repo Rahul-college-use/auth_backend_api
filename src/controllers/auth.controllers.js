@@ -225,7 +225,7 @@ export async function logoutAll(req, res) {
 
 export async function login(req, res) {
     try {
-        // await connectDB();
+        await connectDB();
         const { email, password } = req.body;
 
         if (!email || !password) {
