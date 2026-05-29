@@ -8,10 +8,10 @@ import { generateOtp, getOtpHtml } from "../utils/utils.js";
 import otpModel from "../models/otp.model.js";
 import connectDB from "../config/database.js";
 
+connectDB();
 
 export async function register(req, res) {
     try {
-        await connectDB();
         const { username, email, password } = req.body;
 
         if (!username || !email || !password) {
@@ -76,7 +76,7 @@ export async function register(req, res) {
 
 export async function get_me(req, res) {
     try {
-        await connectDB();
+        // await connectDB();
 
         const token = req.headers.authorization?.split(" ")[1];
         if (!token) {
@@ -111,7 +111,7 @@ export async function get_me(req, res) {
 }
 
 export async function refreshToken(req, res) {
-    await connectDB();
+    // await connectDB();
 
     const refreshToken = req.cookies.refreshToken;
     if (!refreshToken) {
@@ -163,7 +163,7 @@ export async function refreshToken(req, res) {
 }
 
 export async function logout(req, res) {
-    await connectDB();
+    // await connectDB();
 
     const refreshToken = req.cookies.refreshToken;
     if (!refreshToken) {
@@ -197,7 +197,7 @@ export async function logout(req, res) {
 }
 
 export async function logoutAll(req, res) {
-    await connectDB();
+    // await connectDB();
 
     const refreshToken = req.cookies.refreshToken;
     if (!refreshToken) {
@@ -225,7 +225,7 @@ export async function logoutAll(req, res) {
 
 export async function login(req, res) {
     try {
-        await connectDB();
+        // await connectDB();
         const { email, password } = req.body;
 
         if (!email || !password) {
@@ -308,7 +308,7 @@ export async function login(req, res) {
 }
 
 export async function verifyEmail(req, res) {
-    await connectDB();
+    // await connectDB();
 
     const { email, otp } = req.body;
     const otpHash = crypto.createHash("sha512").update(otp).digest('hex')
