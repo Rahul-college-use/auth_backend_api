@@ -6,7 +6,7 @@ import sessionModel from "../models/session.model.js";
 import { sendEmail } from "../services/email.service.js";
 import { generateOtp, getOtpHtml } from "../utils/utils.js";
 import otpModel from "../models/otp.model.js";
-// import connectDB from "../config/database.js";
+import connectDB from "../config/database.js";
 
 // connectDB();
 
@@ -163,7 +163,7 @@ export async function refreshToken(req, res) {
 }
 
 export async function logout(req, res) {
-    // await connectDB();
+    await connectDB();
 
     const refreshToken = req.cookies.refreshToken;
     if (!refreshToken) {
